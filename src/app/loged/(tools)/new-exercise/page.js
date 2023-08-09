@@ -48,7 +48,7 @@ export default function NewExercise() {
             const response = await ky.post(`https://localhost:7261/api/v1/Ejercicio/adaptar-ejercicio/${context.user.Id}`, { json: exerciseData })
             const responseBody = await response.json();
             console.log('EJERCICIO ADAPTADO RESPONSE: ', responseBody)
-            router.forward('/loged/my-exercises')            
+            router.push('/loged/my-exercises')
         }
     };
 
