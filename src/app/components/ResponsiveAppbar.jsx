@@ -16,14 +16,15 @@ import Image from 'next/image';
 import { Stack } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { useRouter } from 'next/navigation';
-
+import { useContext } from 'react';
+import { useEffect } from 'react';
 
 const settings = ['Perfil', 'Cerrar sesion'];
 
-const ResponsiveAppBar = ({ currentPage, setCurrentPage }) => {
+const ResponsiveAppBar = ({ userName, userAvatar }) => {
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const router = useRouter()
-
+    
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -36,15 +37,15 @@ const ResponsiveAppBar = ({ currentPage, setCurrentPage }) => {
         <AppBar position="static" sx={{ height: '8%', backgroundColor: 'white', justifyContent: 'center' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters >
-                    <Image src='/learn-aid-appbar-logo.png' width={150} height={150} onClick={()=>router.replace('/loged/new-exercise')} aria-pressed/>
+                    <Image src='/learn-aid-appbar-logo.png' width={150} height={150} onClick={()=>router.replace('/loged/new-exercise')} aria-pressed alt='learn-aid-appbar-logo'/>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {/*white space*/}
                     </Box>
-                    <Typography fontWeight={700} color='black' sx={{ pr: 2 }}>Romina Izquierdo</Typography>
+                    <Typography fontWeight={700} color='black' sx={{ pr: 2 }}>{userName}</Typography>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="avatar" src={userAvatar} />
                             </IconButton>
                         </Tooltip>
                         <Menu

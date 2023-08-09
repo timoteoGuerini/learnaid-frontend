@@ -22,12 +22,6 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                 width: '100%',
                 backgroundColor: '#EBE8E8',
                 height: '100%',
-                transition: 'transform 0.3s, box-shadow 0.3s, width 0.3s',
-                '&:hover': {
-                    transform: 'translate(-5px, -5px)',
-                    boxShadow: '15px 15px 30px rgba(0, 0, 0, 0.2)',
-                    width: '103%'
-                },
             }}
         >
             <nav aria-label="main mailbox folders">
@@ -37,7 +31,13 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                         <ListItemButton
                             sx={{
                                 backgroundColor: currentPage === 'new-exercise' ? '#F2CC59' : 'transparent',
-                                overflow: 'hidden'
+                                overflow: 'hidden',
+                                transition: 'transform 0.3s, box-shadow 0.3s, width 0.3s',
+                                '&:hover': {
+                                    transform: 'translate(-5px, -5px)',
+                                    boxShadow: '15px 15px 30px rgba(0, 0, 0, 0.2)',
+                                    width: '103%'
+                                },
                             }}
                             onClick={() => {
                                 setCurrentPage('new-exercise')
@@ -55,6 +55,12 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             sx={{
                                 backgroundColor: currentPage === 'my-exercises' ? '#F2CC59' : 'transparent',
                                 overflow: 'hidden',
+                                transition: 'transform 0.3s, box-shadow 0.3s, width 0.3s',
+                                '&:hover': {
+                                    transform: 'translate(-5px, -5px)',
+                                    boxShadow: '15px 15px 30px rgba(0, 0, 0, 0.2)',
+                                    width: '103%'
+                                },
                             }}
                             onClick={() => {
                                 setCurrentPage('my-exercises')

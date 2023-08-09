@@ -1,15 +1,16 @@
 'use client'
-import './../../globals.css'
+import './../globals.css'
 import { Inter } from 'next/font/google'
 import { Box, Grid, Stack, TextField, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import ResponsiveAppBar from '../../components/ResponsiveAppbar';
-import MenuBar from '../../components/MenuBar';
+import { useContext, useState } from 'react';
+import ResponsiveAppBar from '../components/ResponsiveAppbar';
+import MenuBar from '../components/MenuBar';
+import { UserContext } from '@/app/context';
 
 export default function LogedLayout({ children }) {
     const [currentPage, setCurrentPage] = useState('new-exercise'); // Estado para almacenar la página actual
-
+    const context = useContext(UserContext);
     return (
         <Box sx={{
             backgroundSize: 'cover',
@@ -28,7 +29,7 @@ export default function LogedLayout({ children }) {
             <Box sx={{ width: '100%', height: '100vh', justifyContent: 'center', display: 'inline', overflow: 'clip' }}>
                 <Grid container>
                     <Grid item xs={12} height='100%'>
-                        <ResponsiveAppBar />
+                        <ResponsiveAppBar userName={context.user.Nombre.toUpperCase() + ' ' + context.user.Apellido.toUpperCase()} userAvatar={context.user.Foto}/>
                     </Grid>
                     <Grid item xs={2} height='100vh'>
                         <MenuBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
