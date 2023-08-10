@@ -29,7 +29,7 @@ export default function LogedLayout({ children }) {
             <Box sx={{ width: '100%', height: '100vh', justifyContent: 'center', display: 'inline', overflow: 'clip' }}>
                 <Grid container>
                     <Grid item xs={12} height='100%'>
-                        <ResponsiveAppBar userName={context.user.Nombre.toUpperCase() + ' ' + context.user.Apellido.toUpperCase()} userAvatar={context.user.Foto}/>
+                        {context.user.Nombre && context.user.Apellido && <ResponsiveAppBar userName={context.user.Nombre.toUpperCase() + ' ' + context.user.Apellido.toUpperCase()} userAvatar={context.user.Foto}/>}
                     </Grid>
                     <Grid item xs={2} height='100vh'>
                         <MenuBar currentPage={currentPage} setCurrentPage={setCurrentPage} />

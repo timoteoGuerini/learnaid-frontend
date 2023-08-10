@@ -17,7 +17,7 @@ export default function Profile() {
             <Stack spacing={3} pt='5%' alignItems='center' width={'100%'} sx={{ position: 'relative' }}>
                 <label htmlFor="profile-image" style={{ cursor: 'pointer' }} sx={{ width: '300px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto' }}>
-                        {/* Aquí podrías mostrar la imagen del perfil */}
+                        <img src={context.user.Foto} width={200} height={200} alt='Profile picture'/>
                     </div>
                 </label>
                 <Typography fontWeight={700} color='grey' sx={{ fontSize: '45px' }}>{context.user.Nombre.toUpperCase() + ' ' + context.user.Apellido.toUpperCase()}</Typography>

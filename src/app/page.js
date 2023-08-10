@@ -53,7 +53,8 @@ export default function Login() {
         Email: responseBody.email,
         Contraseña: responseBody.contraseña,
         Ejercicios: responseBody.ejercicios,
-        Profesion: responseBody.profesion
+        Profesion: responseBody.profesion,
+        Foto: responseBody.foto
       });
       router.push('/loged/new-exercise');
     } catch (error) {

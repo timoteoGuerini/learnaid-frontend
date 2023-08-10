@@ -36,13 +36,15 @@ export default function NewExercise() {
 
     const handleAdaptarClick = async () => {
         // Realizar validaciones antes de enviar el formulario
+        console.log("entro");
         const newErrors = {};
         for (const field in exerciseData) {
-            if (field !== 'Texto' && exerciseData[field].trim() === '') {
+            if (field !== 'texto' && exerciseData[field].trim() === '') {
                 newErrors[field] = 'Este campo es obligatorio';
             }
         }
         setErrors(newErrors);
+        console.log(newErrors); 
         // Si no hay errores, enviar el formulario
         if (Object.keys(newErrors).length === 0) {
             const response = await ky.post(`https://localhost:7261/api/v1/Ejercicio/adaptar-ejercicio/${context.user.Id}`, { json: exerciseData })

@@ -7,6 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ky from 'ky';
+import axios from 'axios';
+import foto from '../../../public/default-avatar.png'
 
 
 export default function Register() {
@@ -55,12 +57,11 @@ export default function Register() {
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
-        console.log('FOTO ELEGIDA: ', file.name)
+        console.log('FOTO ELEGIDA: ', file);
         setFormValues({
             ...formValues,
-            foto: file.name,
+            foto: file,
         });
-
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -68,7 +69,7 @@ export default function Register() {
             };
             reader.readAsDataURL(file);
         } else {
-            setImagePreview('/default-avatar.png');
+            setImagePreview("../../../public/default-avatar.png");
         }
     };
 
@@ -102,13 +103,26 @@ export default function Register() {
         formData.append('Apellido', formValues.apellido);
         formData.append('Email', formValues.email);
         formData.append('Contraseña', formValues.contraseña);
-        formData.append('Profesion', 'formValues.profesion');
-        formData.append('Foto', '/'); // TODO?
+        formData.append('Profesion', formValues.profesion);
+        formData.append('Foto', formValues.foto); // TODO?
 
         try {
-            const response = await ky.post('https://localhost:7261/api/v1/Usuarios/crear-usuario', {
-                body: formData,
-            });
+            console.log(formValues);
+            var response = axios.postForm('https://localhost:7261/api/v1/Usuarios/crear-usuario', {
+                "Nombre": formValues.nombre,
+                "Apellido": formValues.apellido,
+                "Email" : formValues.email,
+                "Contraseña": formValues.contraseña,
+                "Profesion": formValues.profesion,
+                "Foto": formValues.foto
+            },{ 
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }});
+            //const response = await ky.post('https://localhost:7261/api/v1/Usuarios/crear-usuario', {
+            //    headers: {"Content-Type": "multipart/form-data"},
+            //    body: formData
+            //});
             const responseBody = await response.json();
             console.log('RESPUESTA REGISTER: ', responseBody)
             // Manejar la respuesta del POST
@@ -157,21 +171,21 @@ export default function Register() {
                         multiline
                         rows={3} // Número de filas para el área de texto
                         variant="outlined"
-                        value={undefined}
-                        onChange={undefined}
+                        name="profesion"
+                        value={formValues.profesion}
+                        onChange={handleInputChange}
                     />
                     {/*Selector de imagen de perfil*/}
                     <Typography variant="h1" color='black' fontWeight={700} fontSize='30px'>Seleccionar imagen de perfil</Typography>
-                    <label htmlFor="profile-image" style={{ cursor: 'pointer' }} sx={{ width: '300px' }}>
+                    <label htmlFor="profile-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto', cursor: 'pointer' }} sx={{ width: '300px' }}>
                         <input
                             type="file"
                             id="profile-image"
                             accept="image/*"
                             style={{ display: 'none' }}
-                            onChange={handleImageChange}
-                        />
+                            onChange={handleImageChange}/>
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto' }}>
-                            <Image src={imagePreview} alt="Profile Image" width={200} height={200} />
+                            <img src={imagePreview} alt="Profile Image" style={{width: '200px', height: '200px', alignSelf:'center'}} />
                         </div>
                     </label>
                     <Button className='loginButton' variant='outlined' color='secondary' onClick={handleSubmit}>

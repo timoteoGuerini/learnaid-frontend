@@ -12,6 +12,11 @@ export default function Exercise({ params }) {
     const context = useContext(UserContext)
     const ejercicio = context.user.Ejercicios.find(ex => ex.id == params.id)
 
+    useEffect(()=>{
+        console.log("entro")
+        replaceWithBr()
+    },[])
+
     const handleDownloadPDF = async () => {
         try {
             const response = await ky.get(`https://localhost:7261/api/v1/Ejercicio/pdf/${context.user.Id}/${ejercicio.id}`, {
@@ -29,6 +34,10 @@ export default function Exercise({ params }) {
             console.error('Error downloading PDF:', error);
         }
     };
+
+    function replaceWithBr() {
+        return ejercicio.ejercicio.replace(/\n/g, "<br />")
+      }
 
     return (
         <>
