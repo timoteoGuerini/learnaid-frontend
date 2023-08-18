@@ -1,5 +1,4 @@
 'use client'
-
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -46,7 +45,7 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             <ListItemIcon>
                                 <CreateNewFolderIcon sx={{ color: 'grey' }} />
                             </ListItemIcon>
-                            <ListItemText sx={{ color: 'grey' }} primary="Nuevo ejercicio" />
+                            <ListItemText sx={{ color: 'grey' }} primary="Nueva ejercitación" />
                         </ListItemButton>
                     </ListItem>
                     {/* Usamos una clase personalizada para el botón "Mis ejercicios" */}
@@ -64,13 +63,13 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             }}
                             onClick={() => {
                                 setCurrentPage('my-exercises')
-                                router.replace('/loged/my-exercises')
+                                router.push('/loged/my-exercises')
                             }}
                         >
                             <ListItemIcon>
                                 <FolderCopyIcon sx={{ color: 'grey', display: { xs: 'none', md: 'flex' } }} />
                             </ListItemIcon>
-                            <ListItemText sx={{ color: 'grey' }} primary="Mis ejercicios" />
+                            <ListItemText sx={{ color: 'grey' }} primary="Mis ejercitaciones" />
                         </ListItemButton>
                     </ListItem>
                 </List>

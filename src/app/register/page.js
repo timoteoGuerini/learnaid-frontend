@@ -8,7 +8,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ky from 'ky';
 import axios from 'axios';
-import foto from '../../../public/default-avatar.png'
+import foto from '../../../public/default-avatar.png';
+import { ArrowBack } from '@mui/icons-material'; // Importar el icono
+
 
 
 export default function Register() {
@@ -111,14 +113,15 @@ export default function Register() {
             var response = axios.postForm('https://localhost:7261/api/v1/Usuarios/crear-usuario', {
                 "Nombre": formValues.nombre,
                 "Apellido": formValues.apellido,
-                "Email" : formValues.email,
+                "Email": formValues.email,
                 "Contraseña": formValues.contraseña,
                 "Profesion": formValues.profesion,
                 "Foto": formValues.foto
-            },{ 
+            }, {
                 headers: {
-                  'Content-Type': 'multipart/form-data'
-                }});
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             //const response = await ky.post('https://localhost:7261/api/v1/Usuarios/crear-usuario', {
             //    headers: {"Content-Type": "multipart/form-data"},
             //    body: formData
@@ -126,9 +129,16 @@ export default function Register() {
             const responseBody = await response.json();
             console.log('RESPUESTA REGISTER: ', responseBody)
             // Manejar la respuesta del POST
+
         } catch (error) {
             console.log('ERROR EN EL REGISTER:', error)
         }
+        router.replace('/');
+
+    };
+
+    const handleGoBack = () => {
+        router.replace('/');
     };
 
     return (
@@ -147,8 +157,8 @@ export default function Register() {
                 boxShadow: 10,
             },
         }}>
-            <Box sx={{ display: 'flex', backgroundColor: 'white', width: '733px', height: '100vh', justifyContent: 'center', overflow: 'auto' }}>
-                <Stack spacing={3} width='90%' display='flex'>
+            <Box sx={{ display: 'flex', backgroundColor: 'white', width: '733px', height: '100vh', justifyContent: 'center', overflow: 'auto', pb: '2%' }}>
+                <Stack spacing={3} width='90%' display='flex' paddingBottom={'100'}>
                     <Image src='/learn-aid-web-logo.png' width={300} height={300} quality={100} style={{ paddingTop: '5%' }} />
                     <Typography variant="h4" color='black' fontWeight={700} fontSize='50px'>Registrarse</Typography>
                     <Stack direction='row' spacing={5} sx={{ width: '100%' }}>
@@ -176,21 +186,24 @@ export default function Register() {
                         onChange={handleInputChange}
                     />
                     {/*Selector de imagen de perfil*/}
-                    <Typography variant="h1" color='black' fontWeight={700} fontSize='30px'>Seleccionar imagen de perfil</Typography>
-                    <label htmlFor="profile-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto', cursor: 'pointer' }} sx={{ width: '300px' }}>
+                    <Typography variant="h1" color='black' fontWeight={700} fontSize='30px' paddingBottom={'2%'}>Seleccionar imagen de perfil</Typography>
+                    <label htmlFor="profile-image" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20%', height: '20%', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto', cursor: 'pointer' }} sx={{ width: '300px' }}>
                         <input
                             type="file"
                             id="profile-image"
                             accept="image/*"
                             style={{ display: 'none' }}
-                            onChange={handleImageChange}/>
+                            onChange={handleImageChange} />
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid #000', margin: '0 auto' }}>
-                            <img src={imagePreview} alt="Profile Image" style={{width: '200px', height: '200px', alignSelf:'center'}} />
+                            <img src={imagePreview} alt="Profile Image" style={{ width: '200px', height: '200px', alignSelf: 'center' }} />
                         </div>
                     </label>
                     <Button className='loginButton' variant='outlined' color='secondary' onClick={handleSubmit}>
                         <Typography fontWeight={700} color='black'>Crear cuenta</Typography>
                     </Button>
+                    <IconButton onClick={handleGoBack} sx={{ position: 'absolute', top: '10px', left: '10px' }}>
+                        <ArrowBack />
+                    </IconButton>
                 </Stack>
             </Box>
         </Box>
