@@ -101,7 +101,7 @@ export default function Exercise({ params }) {
                             backgroundColor: isEditing ? 'white' : 'white',
                             borderRadius: '4px',
                             boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
-                            width:'100%'
+                            width: '100%'
                         }}
                     >
                         {isEditing ? (
@@ -133,10 +133,10 @@ export default function Exercise({ params }) {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    
+
                                     onClick={() => handleSave(index)}
                                     style={{
-                                        mt:1,
+                                        mt: 1,
                                         backgroundColor: '#F2CC59',
                                         borderRadius: '0',
                                         border: 0,
@@ -149,7 +149,10 @@ export default function Exercise({ params }) {
                                         },
                                     }}
                                 >
-                                    Save
+                                    <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
+                                        Guardar
+                                    </Typography>
+
                                 </Button>
                             </>
                         ) : (
@@ -165,9 +168,9 @@ export default function Exercise({ params }) {
                                     color="primary"
                                     onClick={() => handleEdit(index)}
                                     style={{
-                                        mt:1,
+                                        mt: 1,
                                         backgroundColor: '#F2CC59',
-                                        borderRadius: '0',
+                                        borderRadius: 3,
                                         border: 0,
                                         boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
                                         transition: 'background-color 0.3s, transform 0.3s, box-shadow 0.3s',
@@ -178,58 +181,66 @@ export default function Exercise({ params }) {
                                         },
                                     }}
                                 >
-                                    Edit
+                                    <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
+                                        Editar
+                                    </Typography>
+
                                 </Button>
                             </>
                         )}
                     </Box>
                 ))}
-                <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={handleDownloadPDF}
-                    style={{
-                        backgroundColor: '#F2CC59',
-                        borderRadius: '0',
-                        width: '50%',
-                        border: 0,
-                        boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
-                        transition: 'background-color 0.3s, transform 0.3s, box-shadow 0.3s',
-                        '&:hover': {
+
+                <Stack direction='row' spacing={5} sx={{ width: '100%' }}>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={handleDownloadPDF}
+                        style={{
                             backgroundColor: '#F2CC59',
-                            transform: 'translateY(-3px)',
-                            boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
-                        },
-                    }}
-                >
-                    <GetAppIcon style={{ color: 'grey' }} />
-                    <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
-                        DESCARGAR PDF EJERCITACION ADAPTADA
-                    </Typography>
-                </Button>
-                <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={handleDownloadOriginalPDF}
-                    style={{
-                        backgroundColor: '#F2CC59',
-                        borderRadius: '0',
-                        width: '50%',
-                        border: 0,
-                        boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
-                        transition: 'background-color 0.3s, transform 0.3s, box-shadow 0.3s',
-                        '&:hover': {
+                            borderRadius: '0',
+                            width: '50%',
+                            border: 0,
+                            boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
+                            transition: 'background-color 0.3s, transform 0.3s, box-shadow 0.3s',
+                            '&:hover': {
+                                backgroundColor: '#F2CC59',
+                                transform: 'translateY(-3px)',
+                                boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
+                            },
+                        }}
+                    >
+                        <GetAppIcon style={{ color: 'grey' }} />
+                        <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
+                            DESCARGAR PDF EJERCITACION <span style={{ color: 'green' }}>ADAPTADA</span>
+                        </Typography>
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={handleDownloadOriginalPDF}
+                        style={{
                             backgroundColor: '#F2CC59',
-                            transform: 'translateY(-3px)',
-                            boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
-                        },
-                    }}
-                >
-                    <GetAppIcon style={{ color: 'grey' }} />
-                    <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
-                        DESCARGAR PDF EJERCITACION ORIGINAL
-                    </Typography>
-                </Button>
+                            borderRadius: '0',
+                            width: '50%',
+                            border: 0,
+                            boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.1)',
+                            transition: 'background-color 0.3s, transform 0.3s, box-shadow 0.3s',
+                            '&:hover': {
+                                backgroundColor: '#F2CC59',
+                                transform: 'translateY(-3px)',
+                                boxShadow: '0px 6px 12px rgba(0, 0, 0, 0.1)',
+                            },
+                        }}
+                    >
+                        <GetAppIcon style={{ color: 'grey' }} />
+                        <Typography width="100%" color='grey' fontWeight={700} fontSize='15px' padding='2%'>
+                            DESCARGAR PDF EJERCITACION<span style={{ color: 'blue' }}> ORIGINAL</span>
+                        </Typography>
+                    </Button>
+                </Stack>
+
+
             </Stack>
         </>
     )

@@ -72,6 +72,29 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             <ListItemText sx={{ color: 'grey' }} primary="Mis ejercitaciones" />
                         </ListItemButton>
                     </ListItem>
+
+                    {/*<ListItem disablePadding sx={{ color: 'white' }} className={currentPage === 'estrategias' ? 'selected-button' : ''}>
+                        <ListItemButton
+                            sx={{
+                                backgroundColor: currentPage === 'estrategias' ? '#F2CC59' : 'transparent',
+                                overflow: 'hidden',
+                                transition: 'transform 0.3s, box-shadow 0.3s, width 0.3s',
+                                '&:hover': {
+                                    transform: 'translate(-5px, -5px)',
+                                    boxShadow: '15px 15px 30px rgba(0, 0, 0, 0.2)',
+                                    width: '103%'
+                                },
+                            }}
+                            onClick={() => {
+                                setCurrentPage('new-exercise')
+                                router.replace('/loged/new-exercise')
+                            }}>
+                            <ListItemIcon>
+                                <CreateNewFolderIcon sx={{ color: 'grey' }} />
+                            </ListItemIcon>
+                            <ListItemText sx={{ color: 'grey' }} primary="Examenes accesibles" />
+                        </ListItemButton>
+                    </ListItem>*/}
                 </List>
             </nav>
             {/* Componente "footer" */}

@@ -10,6 +10,7 @@ import UserProvider, { UserContext } from '@/app/context';
 
 export default function LogedLayout({ children }) {
     const [currentPage, setCurrentPage] = useState('new-exercise'); // Estado para almacenar la página actual
+    localStorage.setItem('currentPage', currentPage)
     //guardar el usuario en localStorage para no perderlo al refrescar la pagina
     const userData = JSON.parse(localStorage.getItem('userData'))
     console.log('userData LogedLayout: ', userData)

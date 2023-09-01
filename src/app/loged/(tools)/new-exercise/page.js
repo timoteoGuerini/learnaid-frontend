@@ -82,7 +82,6 @@ export default function NewExercise() {
         if (exerciseList.length === 0 || !titulo || !idioma || !edadAlumnos) {
             return;
         }
-
         const ejercitacion = {
             titulo,
             edad: parseInt(edadAlumnos),
@@ -90,10 +89,10 @@ export default function NewExercise() {
             ejercicios: exerciseList,
         };
 
-        const response =  await ky.post(`https://localhost:7261/api/v1/Ejercicio/adaptar-ejercicio/${userId}`, {json: ejercitacion})
+        const response =  await ky.post(`https://localhost:7261/api/v1/Ejercicio/adaptar-ejercicio/${userId}`, {json: ejercitacion, timeout:30000})
         const responseBody = await response.json()
         console.log('RESPONSE EJERCICIO ADAPTADO: ', responseBody)
-
+        router.replace(`my-exercises/${responseBody.id}`)
         // Perform the ky.post with the ejercitacion object
         /*ky.post(`https://localhost:7261/api/v1/Ejercicio/adaptar-ejercicio/${userId}`, { json: ejercitacion })
             .then(response => response.json())
@@ -121,8 +120,8 @@ export default function NewExercise() {
             <Typography width="100%" variant="h4" color='black' fontWeight={700} fontSize='40px'><span style={{ color: 'grey' }}>Agregar</span> ejercicio</Typography>
 
             <TextField label="Consigna" variant="outlined" name="consigna" value={consigna} onChange={(e) => setConsigna(e.target.value)} />
-            <TextField label="Texto" variant="outlined" name="texto" value={texto} onChange={(e) => setTexto(e.target.value)} />
-            <TextField label="Ejercicio" variant="outlined" name="ejercicio" multiline value={ejercicio} onChange={(e) => setEjercicio(e.target.value)} />
+            <TextField label="Texto" variant="outlined" name="texto" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+            <TextField label="Ejercicio" variant="outlined" name="ejercicio" multiline value={ejercicio} onChange={(e) => setEjercicio(e.target.value)}/>
             <Stack direction='row' spacing={1}>
                 <Typography fontWeight={700} color='grey'>
                     Tipos de Adaptaciones:
@@ -150,6 +149,7 @@ export default function NewExercise() {
                 disabled={!isAddExerciseEnabled}
                 style={{
                     boxShadow: isAddExerciseEnabled ? '0px 0px 10px 5px #4CAF50' : 'none',
+                    backgroundColor:'#F2CC59'
                 }}
             >
                 <Typography fontWeight={700} color='grey'>Agregar ejercicio</Typography>
@@ -201,11 +201,11 @@ export default function NewExercise() {
             <Button
                 className='loginButton'
                 variant='outlined'
-                color='secondary'
                 onClick={handleCreateExercitacion}
                 disabled={!isCreateExercitacionEnabled}
                 style={{
                     boxShadow: isCreateExercitacionEnabled ? '0px 0px 10px 5px #4CAF50' : 'none',
+                    backgroundColor:'#F2CC59'
                 }}
             >
                 <Typography fontWeight={700} color='grey'>Crear ejercitación</Typography>
