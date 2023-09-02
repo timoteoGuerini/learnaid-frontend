@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 
 const MenuBar = ({ currentPage, setCurrentPage }) => {
     const router = useRouter()
+    
     return (
         <Box
             className="menu-bar" // Agregamos una clase personalizada para el componente MenuBar
@@ -40,6 +41,7 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             }}
                             onClick={() => {
                                 setCurrentPage('new-exercise')
+                                localStorage.setItem('currentPage', currentPage)
                                 router.replace('/loged/new-exercise')
                             }}>
                             <ListItemIcon>
@@ -63,6 +65,7 @@ const MenuBar = ({ currentPage, setCurrentPage }) => {
                             }}
                             onClick={() => {
                                 setCurrentPage('my-exercises')
+                                localStorage.setItem('currentPage', currentPage)
                                 router.push('/loged/my-exercises')
                             }}
                         >

@@ -10,7 +10,6 @@ import UserProvider, { UserContext } from '@/app/context';
 
 export default function LogedLayout({ children }) {
     const [currentPage, setCurrentPage] = useState('new-exercise'); // Estado para almacenar la página actual
-    localStorage.setItem('currentPage', currentPage)
     //guardar el usuario en localStorage para no perderlo al refrescar la pagina
     const userData = JSON.parse(localStorage.getItem('userData'))
     console.log('userData LogedLayout: ', userData)
@@ -36,6 +35,7 @@ export default function LogedLayout({ children }) {
                         </Grid>
                         <Grid item xs={2} height='100vh'>
                             <MenuBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                            {localStorage.setItem('currentPage', currentPage)}
                         </Grid>
                         <Grid item xs={10}>
                             <Box sx={{ width: '100%', height: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'center', overflow: 'clip' }}>
